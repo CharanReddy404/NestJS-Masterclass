@@ -12,19 +12,22 @@ import {
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersoParamDto } from './dtos/get-users-param.dto';
 import { PatchUsersDto } from './dtos/patch-users.dto';
+import { UsersService } from './providers/users.service';
 
 @Controller('users')
 export class UsersController {
+  constructor(
+    // Injecting UsersService
+    private readonly usersService: UsersService,
+  ) {}
+
   @Get('/:id?')
   public getUsers(
     @Param() getUserParamDto: GetUsersoParamDto,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
-    console.log(getUserParamDto);
-    console.log(limit);
-    console.log(page);
-    return 'you send a GET request to users endpoint';
+    return this.usersService.findAll(getUserParamDto, limit, page);
   }
 
   @Post()
