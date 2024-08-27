@@ -1,0 +1,24 @@
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "My First Post",
+  "postType": "post",
+  "slug": "my-first-post",
+  "status": "published",
+  "content": "This is the content of my first post.",
+  "schema": "{\"type\":\"article\",\"properties\":{\"author\":\"John Doe\"}}",
+  "featuredImageUrl": "https://example.com/featured-image.jpg",
+  "publishedOn": "2024-08-27T12:00:00Z",
+  "tags": ["tech", "tutorial", "programming"],
+  "metaOptions": [
+    {
+      "key": "author",
+      "value": "John Doe"
+    },
+    {
+      "key": "category",
+      "value": "Technology"
+    }
+  ]
+}
