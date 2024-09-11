@@ -8,6 +8,7 @@ import {
   IsString,
   IsUrl,
   Matches,
+  MaxLength,
   MinLength,
   ValidateNested,
 } from 'class-validator';
@@ -25,6 +26,7 @@ export class CreatePostDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(4)
+  @MaxLength(512)
   title: string;
 
   @ApiProperty({
@@ -41,6 +43,7 @@ export class CreatePostDto {
   })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(256)
   @Matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
     message:
       'slug can only contain lowercase letters, numbers and uses only "-" without spaces. For example: "my-post"',
@@ -78,6 +81,7 @@ export class CreatePostDto {
   })
   @IsOptional()
   @IsUrl()
+  @MaxLength(1024)
   featuredImageUrl?: string;
 
   @ApiPropertyOptional({
